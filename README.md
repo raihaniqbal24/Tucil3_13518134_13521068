@@ -2,7 +2,7 @@
 ## Implementasi Algoritma UCS dan A* untuk Menentukan Lintasan Terpendek
 
 <p align="center">
-    <img src=https://www.liputan6.com/tekno/read/4102205/modus-incognito-kini-hadir-di-google-maps
+    <img src=https://www.balidev.top/wp-content/uploads/2021/05/cara-menghapus-riwayat-lokasi-google-map.jpg
 </p>
 
 ## Author
