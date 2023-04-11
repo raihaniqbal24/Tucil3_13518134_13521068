@@ -1,74 +1,169 @@
-import heapq
-import math
-import matplotlib.pyplot as plt
-import networkx as nx
+import Jarak_Euclidean as jarak
+import queue 
 
-# Membaca file graf (matriks ketetanggaan berbobot) dan menyimpannya dalam bentuk graf (dictionary of dictionary).
-def read_graph(file_name):
-    with open(file_name, 'r') as file:
-        lines = file.readlines()
-        graph = {}
-        for i, line in enumerate(lines):
-            row = [int(x) for x in line.strip().split()]
-            graph[i] = {}
-            for j, weight in enumerate(row):
-                if weight != 0:
-                    graph[i][j] = weight
-        return graph
 
-# Menampilkan peta/graf menggunakan library NetworkX.
-def show_graph(graph):
-    G = nx.DiGraph()
-    for u, edges in graph.items():
-        for v, weight in edges.items():
-            G.add_edge(u, v, weight=weight)
-    pos = nx.spring_layout(G)
-    nx.draw(G, pos, with_labels=True)
-    labels = nx.get_edge_attributes(G, 'weight')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
-    plt.show()
+class Graph:
+    
+    # Inisiasi graf
+    def __init__(self, numNode, listNode, listKoordinat, adjacencyMatrix):
+        self.__numNode = numNode
+        self.__listnode = listNode
+        self.__adjacencyMatrix = adjacencyMatrix
+        self.__listKoordinat = listKoordinat
+        self.__bobot = [[0 for j in range(self.__numNode)] for i in range(self.__numNode)]
+        
+        # Menghitung bobot dari setiap edge
+        for i in range(self.__numNode):
+            for j in range(self.__numNode):
+                if(self.__adjacencyMatrix[i][j] == 1):
+                    x = self.__listKoordinat[i]
+                    y = self.__listKoordinat[j]
+                    bobot = jarak.euclideanDistance(x,y) 
+                    self.__bobot[i][j] = bobot
 
-# Menerima input simpul asal dan simpul tujuan dari pengguna.
-def get_start_and_goal(graph):
-    start = int(input('Masukkan simpul asal: '))
-    goal = int(input('Masukkan simpul tujuan: '))
-    if start not in graph or goal not in graph:
-        print('Simpul asal atau tujuan tidak valid.')
-        exit(1)
-    return start, goal
+        # Mengubah adjacency matrix menjadi adjacency list
+        self.__adjacencyList = []
+        for i in range(self.__numNode):
+            moves = []
+            for j in range(self.__numNode):
+                if(self.__adjacencyMatrix[i][j] == 1):
+                    moves = moves + [j]
+            self.__adjacencyList = self.__adjacencyList + [moves]
+    
+    # mengembalikan list koordinat x
+    def reconstruct_path(self, awal, curr):
+        path = [curr]
+        while curr in awal:
+            curr = awal[curr]
+            path = [curr] + path
+        return path
+    
+    # mengecek apakah node ada di array_node
+    def cek_node(self, node, array_node):
+        for i in range(len(array_node)):
+            if node == array_node[i]:
+                return True
+        return False
+    
+    # mengembalikan jumlah node
+    def getNumNode(self):
+        return self.__numNode  
+    
+    # mengembalikan node
+    def getNode(self, idxNode):
+        return self.__listnode[idxNode]
+    
+    # mengembalikan index node
+    def getIdxNode(self, node):
+        for i in range(self.__numNode):
+            if(self.__listnode[i] == node):
+                return i
+        return -1
+    
+    # mengembalikan list node dengan idx node yang dimasukkan
+    def idxToNodeList(self, idxList):
+        list = []
+        for idx in idxList:
+            list = list + [self.getNode(idx)]
+        return list
+    
+    # mengembalikan list node
+    def getListNode(self):
+        return self.__listnode
 
-# Algoritma UCS (Uniform Cost Search).
-def ucs(graph, start, goal):
-    queue = [(0, start, [])]
-    visited = set()
-    while queue:
-        cost, node, path = heapq.heappop(queue)
-        if node == goal:
-            return path + [node], cost
-        if node not in visited:
-            visited.add(node)
-            for neighbor, weight in graph[node].items():
-                heapq.heappush(queue, (cost + weight, neighbor, path + [node]))
-    return [], math.inf
+    # mengembalikan adjacency matrix
+    def getAdjacencyMatrix(self):
+        return self.__adjacencyMatrix
+    
+    # mengembalikan list koordinat
+    def getListKoordinat(self):
+        return self.__listKoordinat
 
-# Algoritma A* (A-star).
-def a_star(graph, start, goal):
-    queue = [(0, start, [])]
-    visited = set()
-    while queue:
-        cost, node, path = heapq.heappop(queue)
-        if node == goal:
-            return path + [node], cost
-        if node not in visited:
-            visited.add(node)
-            for neighbor, weight in graph[node].items():
-                heur = math.sqrt((neighbor[0] - goal[0]) ** 2 + (neighbor[1] - goal[1]) ** 2)
-                heapq.heappush(queue, (cost + weight + heur, neighbor, path + [node]))
-    return [], math.inf
+    # mengembalikan koordinat node
+    def getNodeKoordinat(self, idxNode):
+        return self.__listKoordinat[idxNode]
 
-# Contoh penggunaan.
-graph = read_graph('graph.txt')
-show_graph(graph)
-start, goal = get_start_and_goal(graph)
-print('UCS:', ucs(graph, start, goal))
-print('A*:', a_star(graph, start, goal))
+    # mengembalikan koordinat X node
+    def getKoordinatX(self, idxNode):
+        return self.getNodeKoordinat(idxNode)[0]
+    
+    # mengembalikan koordinat Y node
+    def getKoordinatY(self, idxNode):
+        return self.getNodeKoordinat(idxNode)[1]
+    
+    # mengembalikan adjacency list
+    def getAdjacencyList(self):
+        return self.__adjacencyList
+    
+    # mengembalikan bobot
+    def getBobot(self):
+        return self.__bobot
+
+    # mengembalikan adjacency list
+    def getAdjacencyList(self):
+        return self.__adjacencyList
+
+    # mengembalikan list koordinat X
+    def idxToKoordinatX(self, idxList):
+        koordinat_X = []
+        for idx in idxList:
+            koordinat_X = koordinat_X + [self.getNodeKoordinat(idx)[0]]
+        return koordinat_X
+
+    # mengembalikan list koordinat Y
+    def idxToKoordinatY(self, idxList):
+        koordinat_Y = []
+        for idx in idxList:
+            koordinat_Y = koordinat_Y + [self.getNodeKoordinat(idx)[1]]
+        return koordinat_Y
+
+    # mengembalikan moves dari node
+    def getmoves(self, kemana):
+        return self.__adjacencyList[kemana]
+    
+    
+    
+    # Algoritma UCS (Uniform Cost Search)
+    # Algoritma UCS (Uniform Cost Search)
+def ucs(self, start, goal):
+    # Inisiasi open list dan closed list
+    open_list = queue.PriorityQueue()
+    open_list.put((0, start)) # mengatur prioritas berdasarkan cost
+    closed_list = set()
+    # Inisiasi g(n) untuk start node
+    g = {start: 0}
+    # Inisiasi parent node
+    parent = {}
+
+    # Loop hingga open list kosong
+    while not open_list.empty():
+        # Mengambil node dengan cost terendah
+        cost, current = open_list.get()
+        # Menambahkan current node ke closed list
+        closed_list.add(current)
+
+        # Jika current node sama dengan goal node
+        if current == goal:
+            # Mencari path dari start node ke goal node
+            path = self.reconstruct_path(parent, current)
+            return path, g[current]
+
+        # Loop untuk setiap moves dari current node
+        for move in self.__adjacencyList[current]:
+            # Menghitung cost baru
+            new_cost = g[current] + self.__bobot[current][move]
+
+            # Jika move belum pernah dikunjungi atau cost baru lebih kecil dari cost sebelumnya
+            if move not in closed_list or new_cost < g[move]:
+                # Update g(n) dan parent
+                g[move] = new_cost
+                parent[move] = current
+                # Masukkan node ke open list dengan prioritas berdasarkan cost
+                open_list.put((g[move], move))
+
+    # Jika goal node tidak ditemukan, return None
+    return None, None
+
+    
+    
+
