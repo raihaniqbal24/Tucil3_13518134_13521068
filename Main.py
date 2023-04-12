@@ -1,6 +1,6 @@
 import os
 import sys
-import Graph as graf
+import graph as graf
 import Jarak_Euclidean as jarak
 import aStar as algo
 import gmplot

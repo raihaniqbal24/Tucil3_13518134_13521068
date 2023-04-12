@@ -1,4 +1,4 @@
-import Graph as graf
+import graph as graf
 import Jarak_Euclidean as jarak
 from queue import PriorityQueue
 

@@ -1,5 +1,5 @@
 import heapq
-import Graph as graf
+import graph as graf
 import Jarak_Euclidean as jarak
 import queue
 
