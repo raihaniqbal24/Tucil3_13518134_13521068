@@ -7,7 +7,8 @@ import re
 def baca_file():
     # Membaca nama file dari user
     namaFile = input("Silakan masukkan nama file yang dipilih: ")
-    print("")
+    # namaFile = "ITB_MAP.py"
+    # print("Silakan masukkan nama file yang dipilih: ITB_MAP.py")
 
     # Membaca isi file
     try:
