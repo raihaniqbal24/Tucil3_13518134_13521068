@@ -1,8 +1,8 @@
 # Tugas Kecil 3 IF2211 Strategi Algoritma
 ## Implementasi Algoritma UCS dan A* untuk Menentukan Lintasan Terpendek
 
-<p>
-    <img src="https://www.balidev.top/wp-content/uploads/2021/05/cara-menghapus-riwayat-lokasi-google-map.jpg" height="150" width="auto">
+<p align="center">
+    <img src="https://www.balidev.top/wp-content/uploads/2021/05/cara-menghapus-riwayat-lokasi-google-map.jpg" height="250" width="auto">
 </p>
 
 ## Table of Contents
