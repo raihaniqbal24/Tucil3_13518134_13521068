@@ -1,8 +1,8 @@
 # Tugas Kecil 3 IF2211 Strategi Algoritma
 ## Implementasi Algoritma UCS dan A* untuk Menentukan Lintasan Terpendek
 
-<p align="center" height="250" width="auto">
-    <img src=https://www.balidev.top/wp-content/uploads/2021/05/cara-menghapus-riwayat-lokasi-google-map.jpg
+<p>
+    <img src="https://www.balidev.top/wp-content/uploads/2021/05/cara-menghapus-riwayat-lokasi-google-map.jpg" height="150" width="auto">
 </p>
 
 ## Table of Contents
@@ -27,7 +27,7 @@ Pada tugas kecil 3 ini, program menentukan lintasan terpendek berdasarkan peta G
 2. Clone Repository dengan menjalankan perintah:
 ```
 git clone https://github.com/raihaniqbal24/Tucil3_13518134_13521068.git
-cd front-end-patient
+cd Tucil3_13518134_13521068
 ```
 
 3. Jalankan perintah `cd src` untuk masuk ke dalam folder src tempat program berada
@@ -39,5 +39,5 @@ cd front-end-patient
 6. Program akan menampilkan hasil rute, jarak, dan menghasilkan file keluaran peta yang dapat dibuka dengan browser 
 
 ## Author
-- Muhammad Raihan Iqbal (13518134)
-- Ilham Akbar (13521068)
+- 13518134 Muhammad Raihan Iqbal
+- 13521068 Ilham Akbar
