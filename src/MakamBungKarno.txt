@@ -1,0 +1,34 @@
+jumalahNode = 9
+latitude = -8.084819
+longitude = 112.176346
+listKoordinat = [(-8.086586, 112.174459),
+                 (-8.085713, 112.172071),
+                 (-8.087059, 112.178494),
+                 (-8.083405, 112.176965),
+                 (-8.082984, 112.175750),
+                 (-8.088774, 112.178215),
+                 (-8.088249, 112.174025),
+                 (-8.087432, 112.171255),
+                 (-8.085798, 112.174862)]
+
+listNode = ["Jalan Ir. Soekarno-Sumantri Brojonegoro",
+            "Jalan Sumantri Brojonegoro-Cakraningrat",
+            "Jalan Kalasan-Borobudur",
+            "Jalan Ir. Soekarno-Borobudur",
+            "Jalan Sentot Prawirodirjo-Antasari",
+            "Jalan Dieng-Borobudur",
+            "Jalan Dewi Sartika-Ir. Soekarno",
+            "Jalan Cakraningrat-Dewi Sartika",
+            "Jalan Ir. Soekarno-Kalasan"]
+            
+
+matrix = [(0,1,0,0,0,0,1,0,1),
+          (1,0,0,0,1,0,0,1,0),
+          (0,0,0,1,0,1,0,0,1),
+          (0,0,1,0,1,0,0,0,1),
+          (0,1,0,1,0,0,0,0,1),
+          (0,0,1,0,0,0,0,0,0),
+          (1,0,0,0,0,0,0,1,0),
+          (0,1,0,0,0,0,1,0,0),
+          (1,0,1,1,1,0,0,0,0)]
+        
