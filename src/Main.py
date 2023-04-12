@@ -1,4 +1,4 @@
-import Graph as g
+import graph as g
 import Jarak_Euclidean as jarak
 import gmplot
 import baca_file as baca
