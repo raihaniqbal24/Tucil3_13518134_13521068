@@ -18,7 +18,7 @@ Pada tugas kecil 3 ini, program menentukan lintasan terpendek berdasarkan peta G
 ## Requirements
 - [python3](https://www.python.org/downloads/)
 - [pip](https://pip.pypa.io/en/stable/installation/)
-- Python library [networkx](https://pypi.org/project/networkx/)
+- Python package [networkx](https://pypi.org/project/networkx/)
 - Python library [gmplot](https://pypi.org/project/gmplot/)
 
 ## How to Run
