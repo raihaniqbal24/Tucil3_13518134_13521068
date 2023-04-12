@@ -3,7 +3,6 @@ import queue
 
 
 class Graph:
-    
     # Inisiasi graf
     def __init__(self, numNode, listNode, listKoordinat, adjacencyMatrix):
         self.__numNode = numNode
