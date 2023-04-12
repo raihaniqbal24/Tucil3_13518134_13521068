@@ -3,10 +3,8 @@ import Graph as graf
 import Jarak_Euclidean as jarak
 import queue
 
-
+# Implementasi algoritma Uniform Cost Search (UCS)
 def ucs(g, start, goal):
-    # Implementasi algoritma Uniform Cost Search (UCS)
-
     # Inisialisasi heap (prioritas antrian)
     heap = []
     # Memasukkan titik awal ke dalam heap
@@ -27,6 +25,8 @@ def ucs(g, start, goal):
     while heap:
         # Mengambil node dengan cost terkecil dari heap
         (cost, current) = heapq.heappop(heap)
+        # print(current)
+        # print(cost)
 
         # Jika node saat ini merupakan tujuan, maka pencarian selesai
         if current == goal:
@@ -34,11 +34,15 @@ def ucs(g, start, goal):
 
         # Menandai node saat ini sebagai sudah dieksplorasi
         explored.add(current)
+        # print(g.getmoves(current))
 
         # Mengeksplorasi tetangga dari node saat ini
         for move in g.getmoves(current):
-            next_node = move[0]
-            cost_to_next_node = move[1]
+            # print(move)
+            next_node = move
+            move_cost = g.getBobot()
+            # print(move_cost[current][move])
+            cost_to_next_node = move_cost[current][move]
 
             # Menghitung total cost untuk mencapai next_node melalui current
             new_cost = cost_so_far[current] + cost_to_next_node
